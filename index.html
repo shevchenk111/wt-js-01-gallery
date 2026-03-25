@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>JavaScript Homework</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-container">
+        <h1 class="logo">JS<span class="logo-part">Homework</span></h1>
+        <p class="subtitle">Домашнє завдання з JavaScript</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="section tasks-section">
+        <div class="container">
+          <h2 class="section-title">Виберіть завдання</h2>
+
+          <ul class="tasks-list">
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(1)">
+                <span class="task-number">1</span>
+                <span class="task-name">Змінні та виведення</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(2)">
+                <span class="task-number">2</span>
+                <span class="task-name">Перевірка складу</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(3)">
+                <span class="task-number">3</span>
+                <span class="task-name">Авторизація</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(4)">
+                <span class="task-number">4</span>
+                <span class="task-name">Калькулятор дроїдів</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(5)">
+                <span class="task-number">5</span>
+                <span class="task-name">Доставка</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(6)">
+                <span class="task-number">6</span>
+                <span class="task-name">Сума чисел</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(7)">
+                <span class="task-number">7</span>
+                <span class="task-name">checkStorage функція</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(8)">
+                <span class="task-number">8</span>
+                <span class="task-name">Робота з масивами</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(9)">
+                <span class="task-number">9</span>
+                <span class="task-name">logItems функція</span>
+              </button>
+            </li>
+            <li class="task-item">
+              <button class="task-btn" onclick="runTask(10)">
+                <span class="task-number">10</span>
+                <span class="task-name">formatString функція</span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="info-box">
+            <h3 class="info-title">Інструкція</h3>
+            <ol class="info-list">
+              <li>Натисніть на кнопку потрібного завдання</li>
+              <li>Відкрийте консоль браузера (F12 → Console)</li>
+              <li>Завдання 1, 2, 7, 8, 9, 10 виводять результат у консоль</li>
+              <li>Завдання 3, 4, 5, 6 показують діалогові вікна</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">
+          JavaScript Homework, Бобров М. Г., група Е-24
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function runTask(taskNumber) {
+        document.activeElement.blur();
+        document
+          .querySelectorAll('script[data-task]')
+          .forEach(script => script.remove());
+        console.clear();
+        console.log(
+          `%c▶ Запуск Task ${taskNumber}`,
+          'font-size: 16px; font-weight: bold; color: #2196f3;',
+        );
+        console.log('─────────────────────────────');
+        const script = document.createElement('script');
+        script.src = `js/task-${taskNumber}.js?t=${Date.now()}`;
+        script.setAttribute('data-task', taskNumber);
+        script.type = 'module';
+        script.onload = () => {
+          console.log('─────────────────────────────');
+          console.log(
+            `%c✓ Task ${taskNumber} завершено`,
+            'color: #4caf50; font-weight: bold;',
+          );
+        };
+        script.onerror = () => {
+          console.error(
+            `%c✗ Помилка: файл js/task-${taskNumber}.js не знайдено`,
+            'color: #f44336; font-weight: bold;',
+          );
+        };
+        document.body.appendChild(script);
+      }
+    </script>
+  </body>
+</html>
